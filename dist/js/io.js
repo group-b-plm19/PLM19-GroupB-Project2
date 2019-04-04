@@ -1,11 +1,20 @@
 "use strict";
 exports.__esModule = true;
-var kbd = require('kbd');
+var readline = require('readline');
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+var input_stack = [];
+rl.on('line', function (line) {
+    input_stack.push(line);
+});
 var IO = (function () {
     function IO() {
     }
     IO.prototype.read = function () {
-        return kbd.getLineSync();
+        return input_stack.splice(0, 1);
     };
     IO.prototype.input = function (file) {
     };

@@ -32,7 +32,7 @@ function rand() { //park miller
 	return seed / modulus
 }
 
-function another(x, t, y?) {
+export function another(x, t, y?) {
 	y = cap(Math.floor(0.5 + rand() * t.length), 1, t.length)
 	if (x == y) return another(x, t)
 	if (t[y]) return t[y]
@@ -43,12 +43,14 @@ function any(t, x) {
 	return t[cap(Math.floor(0.5 + rand() * t.length), 1, t.length)]
 }
 
-function cat(x, y) {
-	return x.slice().concat(y);
+export function cat(x, y) {
+	console.log("what is x", x) //debug
+	return x.concat(y);
 }
 
-function dump(a, sep?) {
-	for (var i = 1; a < a.length; i++) {
+export function dump(a, sep?) {
+	console.log("dumped") //debug
+	for (var i = 0; a < a.length; i++) {
 		console.log(cat(a[i], sep || ","));
 	}
 }

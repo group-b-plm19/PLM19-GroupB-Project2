@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 var config = require("./config");
 var n = 0;
 function id() {
@@ -27,17 +29,22 @@ function another(x, t, y) {
         return t[y];
     return another(x, t);
 }
+exports.another = another;
 function any(t, x) {
     return t[cap(Math.floor(0.5 + rand() * t.length), 1, t.length)];
 }
 function cat(x, y) {
-    return x.slice().concat(y);
+    console.log("what is x", x);
+    return x.concat(y);
 }
+exports.cat = cat;
 function dump(a, sep) {
-    for (var i = 1; a < a.length; i++) {
+    console.log("dumped");
+    for (var i = 0; a < a.length; i++) {
         console.log(cat(a[i], sep || ","));
     }
 }
+exports.dump = dump;
 function first(t) { return t[0]; }
 function second(t) { return t[1]; }
 function last(t) { return t[t.length - 1]; }

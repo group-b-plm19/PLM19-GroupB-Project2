@@ -1,7 +1,5 @@
 
-// const fs = require('fs');
-
-// const kbd = require('kbd');
+// A mess of concurrency this is!
 
 var readline = require('readline');
 var rl = readline.createInterface({
@@ -11,20 +9,36 @@ var rl = readline.createInterface({
 });
 
 var promise_stack = [];
+var stdin_stack = [];
 
 rl.on('line', function (line) {
-	var func = (promise_stack.splice(0, 1)[0] as any);
-	if (func)
-		func(line)
+
+	var promisedQueued = (promise_stack.splice(0, 1)[0] as any);
+	if (promisedQueued) {
+		// console.log("Popped: " + line)
+		promisedQueued(line)
+	}
+	else {
+		// console.log("Queued: " + line)
+		stdin_stack.push(line); // you'll need this later
+	}
+
 })
 
 export function read() {
-	// console.log("reading:" + input_stack.slice(0, 1))//debug
-	// return input_stack.splice(0, 1)[0];
+	// console.log("reading");//debug
+	var stdin_queued = stdin_stack.splice(0, 1)[0];
 
 	return {
 		then: (resolve) => {
-			promise_stack.push(resolve)
+			if (stdin_queued) {
+				// console.log("Popped Promise");
+				resolve(stdin_queued);
+			}
+			else {
+				// console.log("Queued Promise");
+				promise_stack.push(resolve) // I promise I'll do it later
+			}
 		}
 	};
 }
@@ -36,8 +50,8 @@ export function read() {
 // 	//as far as I know no files are used. just stdin/stdout
 // }
 
-export function write(msg) {
-	process.stdout.write(msg);
+export function print(msg) {
+	process.stdout.write(msg + "\n");
 }
 
 // close() {

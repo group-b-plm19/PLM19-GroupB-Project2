@@ -7,21 +7,32 @@ var rl = readline.createInterface({
     terminal: false
 });
 var promise_stack = [];
+var stdin_stack = [];
 rl.on('line', function (line) {
-    var func = promise_stack.splice(0, 1)[0];
-    if (func)
-        func(line);
+    var promisedQueued = promise_stack.splice(0, 1)[0];
+    if (promisedQueued) {
+        promisedQueued(line);
+    }
+    else {
+        stdin_stack.push(line);
+    }
 });
 function read() {
+    var stdin_queued = stdin_stack.splice(0, 1)[0];
     return {
         then: function (resolve) {
-            promise_stack.push(resolve);
+            if (stdin_queued) {
+                resolve(stdin_queued);
+            }
+            else {
+                promise_stack.push(resolve);
+            }
         }
     };
 }
 exports.read = read;
-function write(msg) {
-    process.stdout.write(msg);
+function print(msg) {
+    process.stdout.write(msg + "\n");
 }
-exports.write = write;
+exports.print = print;
 //# sourceMappingURL=io.js.map

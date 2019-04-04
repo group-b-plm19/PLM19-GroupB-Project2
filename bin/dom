@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# PLATFORM="LINUX"
-PLATFORM="OSX"
+PLATFORM="LINUX"
+# PLATFORM="OSX"
 
 ## Remove before release
 # echo This is dom. You are using the version made by Group B.

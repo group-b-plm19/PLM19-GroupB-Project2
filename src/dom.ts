@@ -1,6 +1,9 @@
 
 const lib = require("./lib");
+const num = require("./num");
 const rows = require("./rows");
+const config = require("./config");
+const io = require("./io");
 
 function dom(t, row1, row2, n?, a0?, a?, b0?, b?, s1?, s2?) {
   s1 = s2 = n = 0;
@@ -22,10 +25,10 @@ function dom(t, row1, row2, n?, a0?, a?, b0?, b?, s1?, s2?) {
   return s1 / n < s2 / n
 }
 
-function doms(t, n, c, row1, row2, s) {
+function doms(t, n?, c?, row1?, row2?, s?) {
   n = config.Lean.dom.samples
   c = t.name + 1
-  // console.log()
+  io.print(lib.cat(t.name, ",") + ",>dom")
   for (var r1 in t.rows) {
     row1 = t.rows[r1];
     row1[c] = 0;
@@ -34,6 +37,9 @@ function doms(t, n, c, row1, row2, s) {
       s = dom(t, row1, row2) ? 1 : 0;
       row1[c] = row1[c] + s;
     }
-    dump(t.rows)
+    console.log("try dump") //debug
+    lib.dump(t.rows)
   }
 }
+
+doms(rows.rows())

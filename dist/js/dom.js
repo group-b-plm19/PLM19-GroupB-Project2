@@ -1,5 +1,8 @@
 var lib = require("./lib");
+var num = require("./num");
 var rows = require("./rows");
+var config = require("./config");
+var io = require("./io");
 function dom(t, row1, row2, n, a0, a, b0, b, s1, s2) {
     s1 = s2 = n = 0;
     for (var _ in t.w) {
@@ -20,6 +23,7 @@ function dom(t, row1, row2, n, a0, a, b0, b, s1, s2) {
 function doms(t, n, c, row1, row2, s) {
     n = config.Lean.dom.samples;
     c = t.name + 1;
+    io.print(lib.cat(t.name, ",") + ",>dom");
     for (var r1 in t.rows) {
         row1 = t.rows[r1];
         row1[c] = 0;
@@ -28,7 +32,9 @@ function doms(t, n, c, row1, row2, s) {
             s_1 = dom(t, row1, row2) ? 1 : 0;
             row1[c] = row1[c] + s_1;
         }
-        dump(t.rows);
+        console.log("try dump");
+        lib.dump(t.rows);
     }
 }
+doms(rows.rows());
 //# sourceMappingURL=dom.js.map

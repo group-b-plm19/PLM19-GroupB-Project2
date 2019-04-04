@@ -8,7 +8,7 @@ const io = require('./io');
 function data() {
   return {
     w: {}, syms: {}, nums: {}, class: null,
-    rows: {}, name: {}, col: {}, _use: {}
+    rows: [], name: {}, col: {}, _use: {}
   }
 }
 
@@ -59,13 +59,14 @@ function header(cells, t?, c?, w?) {
       }
     }
   }
+  console.log(t); //debug
   return t;
 }
 
 
 function row(t, cells, x?, r?) {
   r = t.rows.length + 1;
-  t.tows[r] = {};
+  t.rows[r] = {};
   for (var c in t._use) {
     var c0 = t._use[c];
     x = cells[c0]
@@ -94,10 +95,12 @@ function clone(data0, rows, data1) {
 
 function rows1(stream, t, f0, f, first?: boolean, line?, cells?) {
   function handleLine(line) {
+
     line = line.replace(/[\t\r ]*/g, "").replace(/#.*/g, "")
     cells = line.split(",");
 
-    if (cells > 0) {
+
+    if (cells.length > 0) {
       if (first) {
         f0(cells, t);
       }

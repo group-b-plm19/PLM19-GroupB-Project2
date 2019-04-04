@@ -2,7 +2,6 @@ export function sym() {
 	return { counts: {}, mode: null, most: 0, n: 0, _ent: null }
 }
 
-
 export function symInc(t, x, New?, old?) { //new is a reserved keyword
 
 	if (x == "?") {

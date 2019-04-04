@@ -29,6 +29,7 @@ function doms(t, n?, c?, row1?, row2?, s?) {
   n = config.Lean.dom.samples
   c = t.name + 1
   io.print(lib.cat(t.name, ",") + ",>dom")
+  // console.log(t); //debug
   for (var r1 in t.rows) {
     row1 = t.rows[r1];
     row1[c] = 0;

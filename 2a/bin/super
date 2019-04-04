@@ -1,4 +1,4 @@
 #!/usr/local/bin/lua
-package.path = package.path .. ';/Users/samybencherif/workspace/offshore/original/?.lua'
+package.path = package.path .. ';/Users/samybencherif/workspace/offshore/2a/original/?.lua'
 require('lib')
 main(require('super'))

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PLATFORM="LINUX"
+# PLATFORM="LINUX"
 # PLATFORM="OSX"
 
 ## Remove before release

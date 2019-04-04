@@ -6,6 +6,12 @@ export Test=$(pwd)/test
 export Bin=$(pwd)/bin
 export Src=$(pwd)/original
 export Lua=$(which lua)
+export PLATFORM="LINUX"
+
+if [ "$1" = "--run-on-mac" ]
+then
+	export PLATFORM="OSX"
+fi
 
 # did it this way to avoid modifying original Makefile as I am unsure if that is permitted
 

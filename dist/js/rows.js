@@ -1,6 +1,7 @@
 var num = require("./num");
 var sym = require("./sym");
 var io = require('./io');
+io.read().then(function (line) { return console.log("wangus " + line); });
 function data() {
     return {
         w: {}, syms: {}, nums: {}, "class": null,

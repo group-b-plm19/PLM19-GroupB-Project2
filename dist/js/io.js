@@ -6,24 +6,22 @@ var rl = readline.createInterface({
     output: process.stdout,
     terminal: false
 });
-var input_stack = [];
+var promise_stack = [];
 rl.on('line', function (line) {
-    input_stack.push(line);
+    var func = promise_stack.splice(0, 1)[0];
+    if (func)
+        func(line);
 });
-var IO = (function () {
-    function IO() {
-    }
-    IO.prototype.read = function () {
-        return input_stack.splice(0, 1);
+function read() {
+    return {
+        then: function (resolve) {
+            promise_stack.push(resolve);
+        }
     };
-    IO.prototype.input = function (file) {
-    };
-    IO.prototype.write = function (msg) {
-        process.stdout.write(msg);
-    };
-    IO.prototype.close = function () {
-    };
-    return IO;
-}());
-exports.IO = IO;
+}
+exports.read = read;
+function write(msg) {
+    process.stdout.write(msg);
+}
+exports.write = write;
 //# sourceMappingURL=io.js.map

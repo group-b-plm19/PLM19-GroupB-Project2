@@ -1,20 +1,17 @@
+# The Report
 
-Notes
+located at `./report.pdf`
 
-dep tree for `dom.lua`
+# Source
 
-```
-dom
- | lib
- | | config
- | rows
- | | num
- | | sym
-```
+located in `./src`
 
-## Todo List
+# Test Script
 
-1. Use webpack to stitch programs together using `require` from commonjs spec
+located at `./run`
+
+you may need to run
+`chmod +x run`
 
 ## Building
 

@@ -1,0 +1,4 @@
+#!/usr/local/bin/lua
+package.path = package.path .. ';/Users/samybencherif/workspace/CSC-417/plm19proj2/original/?.lua'
+require('lib')
+main(require('lib'))

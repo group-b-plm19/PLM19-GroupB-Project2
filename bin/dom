@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# PLATFORM="LINUX"
+PLATFORM="OSX"
+
+## Remove before release
+# echo This is dom. You are using the version made by Group B.
+
+# for DEBUGGING and TESTING run the original implementation instead of our own
+# bin/_depr_dom $*
+# exit 0
+
+if [ "$1" = "--help" ]
+then
+	echo This is dom. You are using the version made by Group B.
+else
+	cd ./dist/js
+	if [ "$PLATFORM" = "OSX" ]
+	then
+		../../deps_osx/.bin/node ./dom.js $*
+	elif [ "$PLATFORM" = "LINUX" ]
+	then
+		../../deps_ubuntu/.bin/node ./dom.js $*
+	fi
+fi

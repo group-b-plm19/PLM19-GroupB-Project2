@@ -1,0 +1,15 @@
+#!/bin/bash
+
+PATH="$(pwd)/bin:$PATH"  # allow dom to be executed without leading "./"
+export Etc=$(pwd)/etc
+export Test=$(pwd)/test
+export Bin=$(pwd)/bin
+export Src=$(pwd)/original
+export Lua=$(which lua)
+
+# did it this way to avoid modifying original Makefile as I am unsure if that is permitted
+
+# make eg0
+# make eg0a
+# make eg0b
+make eg1

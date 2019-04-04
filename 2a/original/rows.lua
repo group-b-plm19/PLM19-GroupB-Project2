@@ -171,7 +171,8 @@ function rows1(stream, t,f0,f,   first,line,cells)
     cells = split(line)
     line = io.read()
     if #cells > 0 then
-      if first then f0(cells,t) else f(t,cells) end end
+      if first then f0(cells,t) else f(t,cells) end
+    end
       first = false
   end
   io.close(stream)

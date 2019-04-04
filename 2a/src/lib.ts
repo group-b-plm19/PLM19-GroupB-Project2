@@ -44,7 +44,13 @@ function any(t, x) {
 }
 
 export function cat(x, y) {
-	return x.concat(y);
+	var obj = {}
+	for (var i in x) {
+		obj[i] = x[i];
+	}
+	for (var i in y) {
+		obj[i] = y[i];
+	}
 }
 
 export function dump(a, sep?) {

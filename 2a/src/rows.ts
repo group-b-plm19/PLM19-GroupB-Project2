@@ -8,7 +8,7 @@ const io = require('./io');
 function data() {
   return {
     w: {}, syms: {}, nums: {}, class: null,
-    rows: {}, name: "", col: {}, _use: {}
+    rows: {}, name: {}, col: {}, _use: {}
   }
 }
 
@@ -36,7 +36,7 @@ function header(cells, t?, c?, w?) {
   for (var c0 in cells) {
     var x = cells[c0];
     if (!(x == "%?")) {
-      c = t._use++;
+      c = t._use.length + 1;
       t._use[c] = c0;
       t.name[c] = x;
       t.col[x] = c;
@@ -71,8 +71,8 @@ function header(cells, t?, c?, w?) {
 
 
 function row(t, cells, x?, r?) {
-  r = t.rows++;
-  t.tows[r] = [];
+  r = t.rows.length + 1;
+  t.tows[r] = {};
   for (var c in t._use) {
     var c0 = t._use[c];
     x = cells[c0]
@@ -86,19 +86,20 @@ function row(t, cells, x?, r?) {
       }
     }
   }
-  t.rows[r][c] = x
+  t.rows[r][c] = x;
+  return t;
 }
 
 function clone(data0, rows, data1) {
-  data1 = this.header(data0.name);
+  data1 = header(data0.name);
   for (var cells in rows) {
-    this.row(data1, cells)
+    row(data1, cells)
   }
   return data1;
 
 }
 
-function rows1(stream, t, f0, f, first?, line?, cells?) {
+function rows1(stream, t, f0, f, first?: boolean, line?, cells?) {
   function handleLine(line) {
     line = line.replace(/[\t\r ]*/g, "").replace(/#.*/g, "")
     cells = line.split(",");
@@ -111,13 +112,12 @@ function rows1(stream, t, f0, f, first?, line?, cells?) {
         f(t, cells);
       }
     }
+    first = false;
     io.read().then(handleLine);
-
   }
 
   first = true;
   io.read().then(handleLine)
-  // io.close(stream);
   return t;
 }
 

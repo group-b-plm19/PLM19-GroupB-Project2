@@ -29,29 +29,33 @@ function dep(t, c) {
   return !this.indep(t, c);
 }
 
+function match(str, ptn) {
+  return ptn.includes(str[0]) || ptn.includes(str[1]) || ptn.includes(str[2]); //close enough
+}
+
 function header(cells, t?, c?, w?) {
   t = t || data()
   t.indeps = [];
   for (var c0 in cells) {
     var x = cells[c0];
-    if (!(x.match("%?"))) {
+    if (!match(x, "%?")) {
       c = t._use.length + 1;
       t._use[c] = c0;
       t.name[c] = x;
       t.col[x] = c;
-      if (x.match("[<>%$]")) {
+      if (match(x, "[<>%$]")) {
         t.nums[c] = num.num();
       }
       else {
         t.syms[c] = sym.sym();
       }
-      if (x.match("<")) {
+      if (match(x, "<")) {
         t.w[c] = -1;
       }
-      else if (x.match(">")) {
+      else if (match(x, ">")) {
         t.w[c] = 1;
       }
-      else if (x.match("!")) {
+      else if (match(x, "!")) {
         t.class = c;
       }
       else {
@@ -59,7 +63,7 @@ function header(cells, t?, c?, w?) {
       }
     }
   }
-  console.log(t); //debug
+  console.log(t);
   return t;
 }
 

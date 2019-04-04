@@ -30,41 +30,34 @@ function dep(t, c) {
 }
 
 function header(cells, t?, c?, w?) {
-  if (t != null || data() != null) {
-    t.indeps = [];
-  }
+  t = t || data()
+  t.indeps = [];
   for (var c0 in cells) {
     var x = cells[c0];
-    if (!(x == "%?")) {
+    if (!(x.match("%?"))) {
       c = t._use.length + 1;
       t._use[c] = c0;
       t.name[c] = x;
       t.col[x] = c;
-      if (x == "[<>%$]") {
-        t.nums[c] = num();
+      if (x.match("[<>%$]")) {
+        t.nums[c] = num.num();
       }
       else {
-        t.syms[c] = sym();
+        t.syms[c] = sym.sym();
       }
-      if (x == "<") {
+      if (x.match("<")) {
         t.w[c] = -1;
       }
-      else {
-        if (x == ">") {
-          t.w[c] = 1;
-        }
-        else {
-          if (x == "!") {
-            t.class = c;
-          }
-          else {
-            t.indeps[t.indeps++] = c;
-          }
-        }
+      else if (x.match(">")) {
+        t.w[c] = 1;
       }
-
+      else if (x.match("!")) {
+        t.class = c;
+      }
+      else {
+        t.indeps[t.indeps.length + 1] = c;
+      }
     }
-
   }
   return t;
 }

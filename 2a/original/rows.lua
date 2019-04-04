@@ -79,11 +79,14 @@ function header(cells,t,       c,w)
       if x:match("[<>%$]")
 	 then t.nums[c] = num()
 	 else t.syms[c] = sym()
-      end
+    end
       if     x:match("<") then t.w[c]  = -1
       elseif x:match(">") then t.w[c]  =  1
       elseif x:match("!") then t.class =  c
-      else   t.indeps[ #t.indeps+1 ] = c end end end
+      else   t.indeps[ #t.indeps+1 ] = c
+      end
+    end
+  end
   return t
 end
 

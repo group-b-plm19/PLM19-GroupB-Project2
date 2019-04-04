@@ -6,12 +6,16 @@ located at `./report.pdf`
 
 located in `./src`
 
-# Test Script
+# Testing
 
 located at `./run`
 
 you may need to run
 `chmod +x run`
+
+This script suits Ubuntu, but if you would like to run it on a macbook, there is a command for that too.
+
+`./run --run-on-mac`
 
 ## Building
 

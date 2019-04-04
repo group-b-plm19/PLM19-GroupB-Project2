@@ -44,7 +44,6 @@ function any(t, x) {
 }
 
 export function cat(x, y) {
-	// console.log("what is x", x) //debug
 	return x.concat(y);
 }
 

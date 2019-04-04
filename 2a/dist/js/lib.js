@@ -38,6 +38,7 @@ function cat(x, y) {
 }
 exports.cat = cat;
 function dump(a, sep) {
+    console.log("dumped");
     for (var i = 0; a < a.length; i++) {
         console.log(cat(a[i], sep || ","));
     }

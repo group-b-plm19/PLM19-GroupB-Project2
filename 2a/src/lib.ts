@@ -44,12 +44,12 @@ function any(t, x) {
 }
 
 export function cat(x, y) {
-	console.log("what is x", x) //debug
+	// console.log("what is x", x) //debug
 	return x.concat(y);
 }
 
 export function dump(a, sep?) {
-	console.log("dumped") //debug
+	// console.log("dumped") //debug
 	for (var i = 0; a < a.length; i++) {
 		console.log(cat(a[i], sep || ","));
 	}

@@ -34,12 +34,10 @@ function any(t, x) {
     return t[cap(Math.floor(0.5 + rand() * t.length), 1, t.length)];
 }
 function cat(x, y) {
-    console.log("what is x", x);
     return x.concat(y);
 }
 exports.cat = cat;
 function dump(a, sep) {
-    console.log("dumped");
     for (var i = 0; a < a.length; i++) {
         console.log(cat(a[i], sep || ","));
     }

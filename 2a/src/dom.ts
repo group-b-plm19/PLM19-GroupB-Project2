@@ -37,7 +37,7 @@ function doms(t, n?, c?, row1?, row2?, s?) {
       s = dom(t, row1, row2) ? 1 : 0;
       row1[c] = row1[c] + s;
     }
-    console.log("try dump") //debug
+    // console.log("try dump") //debug
     lib.dump(t.rows)
   }
 }
